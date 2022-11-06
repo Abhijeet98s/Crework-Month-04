@@ -1,14 +1,16 @@
-export default function Filter({ movies, setMovies }) {
+export default function Filter({ ratings }) {
+  // console.log(ratings);
   return (
     <>
       <div className="mx-4 my-2 flex flex-wrap items-center justify-start gap-3 text-sm text-white">
         <form>
           <select className="rounded-sm text-black" name="rating" id="rating">
-            <option value="rating">Rating</option>
-            <option value="9.0">9.0</option>
-            <option value="8.5">8.5</option>
-            <option value="8.0">8.0</option>
-            <option value="7.5">7.5</option>
+            <option value="">Rating</option>
+            {ratings.map((rating,ind) => {
+              <option value={rating} key={ind}>
+                {rating}
+              </option>;
+            })}
           </select>
         </form>
       </div>

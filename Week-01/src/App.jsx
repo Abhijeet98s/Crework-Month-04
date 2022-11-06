@@ -9,7 +9,6 @@ import MovieList from "./components/MovieList/MovieList";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [searchMovie, setSearchMovie] = useState("");
-  const [input, setInput] = useState("Black Adam");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,23 +20,13 @@ export default function App() {
       setMovies(data.results);
     };
     fetchData();
-  }, [input]);
+  }, []);
 
   const updateSearch = (e) => {
     setSearchMovie(e.target.value);
   };
 
-  const getSearch = (e) => {
-    e.preventDefault();
-    const result = movies.filter((movie) => {
-      if (searchMovie === "") return;
-      else if (movie.title.includes(searchMovie)) {
-        return movie;
-      }
-    });
-    console.log(result);
-    setInput(result);
-  };
+  
 
   return (
     <>
@@ -53,8 +42,7 @@ export default function App() {
               <Search
                 movies={movies}
                 searchMovie={searchMovie}
-                getSearch={getSearch}
-                updateSearch={updateSearch}               
+                updateSearch={updateSearch}
               />
             }
           ></Route>

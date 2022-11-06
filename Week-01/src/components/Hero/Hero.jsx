@@ -5,8 +5,12 @@ import { MdStar } from "react-icons/md";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Hero({ movies, setMovies }) {
-  
+export default function Hero({ movies }) {
+
+  const generateRatings = () => {
+    return [...new Set(movies.map(movie => movie.vote_average))];
+  };
+
   return (
     <>
       <div className="container max-w-full">
@@ -45,8 +49,14 @@ export default function Hero({ movies, setMovies }) {
             </Link>
           ))}
         </Carousel>
-        <Filter movies={movies} />
-        <Card movies={movies} />
+        <Filter ratings={generateRatings()} />
+        <div className="container grid grid-cols-1 gap-3 px-8 py-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:px-16">
+          {movies.map((movie) => (
+            <Link key={movie.id} to={`/movie/${movie.id}`}>
+              <Card movie={movie} />
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );
