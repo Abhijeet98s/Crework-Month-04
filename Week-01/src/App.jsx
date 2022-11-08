@@ -6,26 +6,25 @@ import About from "./components/About/About";
 import Search from "./components/Search/Search";
 import MovieList from "./components/MovieList/MovieList";
 
-export default function App() {
+export default function App() {  
   const [movies, setMovies] = useState([]);
   const [searchMovie, setSearchMovie] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        "https://api.themoviedb.org/3/movie/popular?api_key=912b25081963b1fc7c1559e0575ff461&language=en-US",
+        `https://api.themoviedb.org/3/movie/popular?api_key=${import.meta.env.VITE_API_KEY}&language=en-US`,
       );
       const data = await res.json();
       // console.log(data.results);
       setMovies(data.results);
     };
     fetchData();
-  }, []);
+  }, [searchMovie]);
 
   const updateSearch = (e) => {
     setSearchMovie(e.target.value);
   };
-
   
 
   return (
