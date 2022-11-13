@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark-theme {
+  background-color: black;
+  color: whitesmoke;
+}
+
+.light-theme {
+  background-color: whitesmoke;
+  color: #333333;
+}
+
+.dark-theme-btn {
+  background: rgb(59 130 246);
+}
+
+.light-theme-btn {
+  background: #191919;
+  color: white;
+}
